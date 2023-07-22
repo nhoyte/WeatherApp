@@ -8,7 +8,8 @@ body.font {
   font-family: "Poppins", sans-serif;
   font-size: 23px;
 }
-h1.top {
+h1.title {
+  font-size: 2rem;
   display: block;
   margin: 0 auto;
   text-decoration: wavy;
