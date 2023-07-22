@@ -1,0 +1,116 @@
+body {
+  background-image: URL("../images/colorfulCity.jpg");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.font {
+  font-family: "Poppins", sans-serif;
+  font-size: 23px;
+}
+h1.top {
+  display: block;
+  margin: 0 auto;
+  text-decoration: wavy;
+  text-decoration-line: underline;
+  text-align: center;
+  color: magenta;
+  padding: 5px;
+}
+div.cities a {
+  color: rgb(65 104 255);
+  font-size: 25px;
+  text-align: center;
+}
+div.small {
+  font-size: 15px;
+  color: grey;
+}
+div.padding-left {
+  margin-left: 5px;
+}
+
+form.formSection {
+  margin: 20px 0;
+}
+input.inputBox {
+  width: 245px;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  box-shadow: 2px 5px 8px 2px rgba(0, 0, 255, 0.2);
+}
+input.searchButton {
+  background-color: rgb(86, 169, 247);
+  border: 2px solid rgb(62, 143, 248);
+  transition: all 10ms ease-in-out;
+}
+input.locationButton {
+  width: 225px;
+  background-color: rgb(4, 211, 4);
+  border: 2px solid rgb(0, 172, 0);
+  transition: all 10ms ease-in-out;
+}
+div.row div.right-aligned {
+  text-align: right;
+}
+div.container {
+  background-color: #e3e5f7;
+  position: relative;
+  top: 10px;
+  width: 35%;
+  border: 4mm ridge rgb(205, 58, 224);
+  margin: 30px auto;
+  padding: 15px;
+}
+span.temperature {
+  font-size: 40px;
+  line-height: 1.5em;
+}
+.sun {
+  border: 5px solid orange;
+  border-radius: 150px;
+  font-size: 70px;
+  margin: 15px 0 15px 0;
+}
+.weatherIcon {
+  font-size: 80px;
+}
+.paddedRow {
+  margin-bottom: 40px;
+}
+.unitLinks {
+  font-size: 20px;
+  text-decoration: none;
+}
+div.capitalize {
+  text-transform: capitalize;
+}
+div.tempColumn {
+  padding: 0;
+}
+div.unitColumn {
+  padding-left: 3px;
+}
+input.inputBox:hover {
+  border: 0;
+  box-shadow: 3px 3px 15px -3px magenta;
+}
+.searchButton:hover {
+  background: rgb(62, 143, 248);
+  border: 2px solid rgb(91, 191, 344);
+}
+.locationButton:hover {
+  background: rgb(0, 172, 0);
+  border: 2px solid rgb(60, 245, 9);
+}
+.unitLinks:hover {
+  text-decoration: underline;
+}
+a.activeUnitLink {
+  font-weight: 500;
+  color: rgb(13, 69, 255);
+}
+div.cities a:hover {
+  color: rgb(147, 72, 245);
+  font-weight: 600;
+}
