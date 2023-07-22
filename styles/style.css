@@ -82,6 +82,15 @@ span.temperature {
   font-size: 20px;
   text-decoration: none;
 }
+div.footer {
+  bottom: 0;
+  padding: 3px;
+  color: magenta;
+  background-color: white;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: underline;
+}
 div.capitalize {
   text-transform: capitalize;
 }
