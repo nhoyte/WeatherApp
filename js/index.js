@@ -36,7 +36,7 @@ function getTemp(response) {
   let city = document.querySelector("#searched-city");
   city.innerHTML = searchedCity;
   let temp = document.querySelector("#temp");
-  temp.innerHTML = `${currentTemp}ºF`;
+  temp.innerHTML = `${currentTemp}`;
   let description = document.querySelector("#descr");
   description.innerHTML = weatherDescr;
   let humid = document.querySelector("#humidity");

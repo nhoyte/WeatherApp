@@ -23,8 +23,8 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
-  <body class="font">
-    <h1 class="title">Weather Search Engine</h1>
+  <body>
+    <h1>Weather Search Engine</h1>
     <div class="container">
       <!--Top level links to cities-->
       <div class="row cities">
@@ -61,26 +61,19 @@
       </div>
 
       <!-- City and Weather text -->
-      <div class="row">
+      <div class="row paddedRow">
         <div class="col capitalize" id="searched-city">Search a city...🏙</div>
         <div class="col right-aligned">Weather</div>
       </div>
 
-      <!-- Empty row for space -->
-      <div class="row">
-        <div class="col-sm-12"></div>
-      </div>
-
       <!--Current Weather info-->
       <div class="row">
-        <div class="col-sm-auto"></div>
-        <div class="col-sm-auto tempColumn">
-          <span class="temperature" id="temp"></span>
+        <div class="col-sm-auto temperature" id="temp">
           <!--Temperature will be inserted here-->
         </div>
-        <div class="col-sm-auto unitColumn">
-          <a href="#" class="unitLinks activeUnitLink" id="fahrenheit"></a>
-          <a href="#" class="unitLinks" id="celsius"></a>
+        <div class="col-sm-auto unitLinks">
+          <a href="#" class="activeUnitLink" id="fahrenheit">ºF</a> |
+          <a href="#" id="celsius">ºC</a>
         </div>
         <div class="col-sm-auto small">
           <div id="humidity"></div>
