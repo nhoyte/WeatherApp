@@ -9,7 +9,7 @@ body.font {
   font-size: 23px;
 }
 h1.title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: block;
   margin: 0 auto;
   text-decoration: wavy;
@@ -84,6 +84,7 @@ span.temperature {
   text-decoration: none;
 }
 div.footer {
+  font-size: medium;
   bottom: 0;
   padding: 3px;
   color: magenta;
