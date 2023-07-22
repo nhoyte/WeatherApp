@@ -21,7 +21,7 @@ div.container {
   background-color: #e3e5f7;
   position: relative;
   top: 10px;
-  max-width: 730px;
+  max-width: 680px;
   border: 4mm ridge rgb(205, 58, 224);
   margin: 30px auto;
   padding: 15px;
@@ -71,7 +71,7 @@ div div.right-aligned {
 
 .unitLinks {
   padding-left: 0px;
-  font-size: medium;
+  font-size: 14px;
   line-height: 1.2;
 }
 .unitLinks a {
