@@ -58,7 +58,7 @@ div.container {
   background-color: #e3e5f7;
   position: relative;
   top: 10px;
-  width: 40%;
+  max-width: 730px;
   border: 4mm ridge rgb(205, 58, 224);
   margin: 30px auto;
   padding: 15px;
