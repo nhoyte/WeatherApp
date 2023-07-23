@@ -52,30 +52,46 @@ function getTemp(response) {
   ); //sets src HTML element attribute
   iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
 }
-//Default is to show weather info for Hollywood, CA
-function defaultCity(event) {
+
+//Retrieves input when search button is clicked
+function searchSubmit(event) {
+  //Recieves city input
+  event.preventDefault();
+  let cityElement = document.querySelector("#city-input");
+  searchCity(cityElement.value);
+}
+
+//Search city function
+function searchCity(city) {
   //Make API call to WeatherAPI
   let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=hollywood&appid=${apiKey}&units=imperial`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
   axios.get(apiUrl).then(getTemp);
 }
-defaultCity();
-
-//Search city function
-function searchCity(event) {
-  event.preventDefault();
-  let enteredCity = document.querySelector("#city-input");
-  if (enteredCity.value) {
-    //Make API call to WeatherAPI
-    let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${enteredCity.value}&appid=${apiKey}&units=imperial`;
-
-    axios.get(apiUrl).then(getTemp);
-  }
-}
 let searchButton = document.querySelector("#search-button");
-searchButton.addEventListener("click", searchCity);
+searchButton.addEventListener("click", searchSubmit);
+
+//Default is to show weather info for Hollywood, CA
+searchCity("hollywood");
+
+//Function to search weather info by coordinates using Geolocation API
+function getCoordinates(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+
+  let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
+
+  axios.get(apiUrl).then(getTemp);
+}
+
+//Adding event listener to 'current location' button
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener(
+  "click",
+  navigator.geolocation.getCurrentPosition(getCoordinates)
+);
 
 //C|F Selection
 function displayCelsius(event) {
@@ -90,22 +106,6 @@ function displayCelsius(event) {
   cTemp.innerHTML = 29;
 }
 
-function getCoordinates(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-
-  let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
-
-  axios.get(apiUrl).then(getTemp);
-}
-
-let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener(
-  "click",
-  navigator.geolocation.getCurrentPosition(getCoordinates)
-);
-
 function displayFahrenheit(event) {
   event.preventDefault();
   //Add active unit class to fahrenheit link to show that link is selected
@@ -117,7 +117,7 @@ function displayFahrenheit(event) {
   let fTemp = document.querySelector("#temp");
   fTemp.innerHTML = 84;
 }
-
+//Adding event listeners to unit links
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsius);
 let fahrenLink = document.querySelector("#fahrenheit");
