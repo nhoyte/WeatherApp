@@ -61,31 +61,35 @@
       </div>
 
       <!-- City and Weather text -->
-      <div class="row paddedRow">
+      <div class="row cityRow">
         <div class="col capitalize" id="searched-city">Search a city...🏙</div>
         <div class="col right-aligned">Weather</div>
       </div>
 
       <!--Current Weather info-->
       <div class="row">
+        <div class="col-sm-auto iconColumn">
+          <img src="" alt="" class="weatherIcon" id="weather-icon" />
+        </div>
+        <!--Weather icon will be injected here-->
         <div class="col-sm-auto temperature" id="temp">
-          <!--Temperature will be inserted here-->
+          <!--Temperature will be injected here-->
         </div>
         <div class="col-sm-auto unitLinks">
           <a href="#" class="activeUnitLink" id="fahrenheit">ºF</a> |
           <a href="#" id="celsius">ºC</a>
         </div>
-        <div class="col-sm-auto small">
+        <div class="col-sm-auto small weatherInfo">
           <div id="humidity"></div>
-          <!--Humidity will be inserted here-->
+          <!--Humidity will be injected here-->
           <div id="wind"></div>
-          <!--Wind Speed will be inserted here-->
+          <!--Wind Speed will be injected here-->
         </div>
         <div class="col small right-aligned">
           <div id="date-time"></div>
-          <!--Current Day/Time will be inserted here-->
+          <!--Current Day/Time will be injected here-->
           <div class="capitalize" id="descr"></div>
-          <!--Weather Description will be inserted here (Ex. sunny, cloudy, etc.)-->
+          <!--Weather Description will be injected here (Ex. sunny, cloudy, etc.)-->
         </div>
       </div>
     </div>
