@@ -30,18 +30,20 @@ let fahrenheitTempGlobal = null;
 
 //function to get temp for searched city
 function getTemp(response) {
+  console.log(response);
   let searchedCity = response.data.name;
   let currentTemp = Math.round(response.data.main.temp);
   let weatherDescr = response.data.weather[0].description;
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
   let iconCode = response.data.weather[0].icon;
+  let country = response.data.sys.country;
 
   //Updating global variable
   fahrenheitTempGlobal = response.data.main.temp;
 
   let city = document.querySelector("#searched-city");
-  city.innerHTML = searchedCity;
+  city.innerHTML = `${searchedCity}, ${country}`;
   let temp = document.querySelector("#temp");
   temp.innerHTML = `${currentTemp}`;
   let description = document.querySelector("#descr");

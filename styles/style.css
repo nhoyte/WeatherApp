@@ -8,12 +8,13 @@ body {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   display: block;
   margin: 0 auto;
   text-decoration: wavy;
   text-decoration-line: underline;
   text-align: center;
+  text-shadow: rgb(245, 91, 250) 1px 0 10px;
   color: magenta;
   padding: 5px;
 }
@@ -24,7 +25,8 @@ div.container {
     rgb(251 189 230) 44.5%,
     rgb(255 235 206) 84.7%
   );
-  /* background-color: #e3e5f7; */
+  /*
+  background-color: #f8f4e7;*/
   position: relative;
   top: 10px;
   max-width: 680px;
@@ -33,7 +35,8 @@ div.container {
   padding: 15px;
 }
 div.cities a {
-  color: rgb(7 138 255);
+  color: rgb(30, 117, 248);
+  text-shadow: rgb(101, 214, 245) 5px 0 10px;
   font-weight: 450;
   font-size: 25px;
   text-align: center;
@@ -82,6 +85,7 @@ form {
   margin: 20px 0;
 }
 input.inputBox {
+  font-size: 18px;
   width: 245px;
   border-top-width: 3px;
   border-left-width: 3px;
@@ -102,15 +106,14 @@ div div.right-aligned {
   text-align: right;
 }
 
-div.footer {
+div p.footer {
   font-size: medium;
-  bottom: 0;
-  padding: 3px;
+  margin: 5px 0;
   color: magenta;
-  background-color: white;
+  background-color: rgb(248, 245, 221);
+  border: 2px solid black;
   text-align: center;
   font-weight: 500;
-  text-decoration: underline;
 }
 div.capitalize {
   text-transform: capitalize;
@@ -130,6 +133,7 @@ input.inputBox:hover {
 div.cities a:hover {
   color: rgb(131 27 207);
   font-weight: 600;
+  text-shadow: none;
 }
 .unitLinks a:hover {
   color: magenta;
