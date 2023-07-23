@@ -4,7 +4,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Poppins", sans-serif;
-  font-size: 23px;
+  font-size: 25px;
 }
 
 h1 {
@@ -31,21 +31,45 @@ div.cities a {
   font-size: 25px;
   text-align: center;
 }
-div.paddedRow {
+div.cityRow {
   padding-bottom: 5px;
+}
+div.iconColumn {
+  padding: 0;
+  position: relative;
+  left: -15px;
+}
+img.weatherIcon {
+  position: relative;
+  top: -25px;
 }
 div.temperature {
   font-size: 45px;
   line-height: 1;
-  padding-right: 3px;
+  padding: 0 3px 0 0;
+  position: relative;
+  left: -25px;
 }
 
+div.unitLinks {
+  padding-left: 0px;
+  font-size: 14px;
+  line-height: 1.2;
+  position: relative;
+  left: -30px;
+}
+div.weatherInfo {
+  padding: 0;
+  position: relative;
+  left: -20px;
+}
 div.small {
   font-size: 15px;
   color: grey;
   line-height: 1.2;
 }
-form.formSection {
+form {
+  font-size: 20px;
   margin: 20px 0;
 }
 input.inputBox {
@@ -60,7 +84,7 @@ input.searchButton {
   transition: all 10ms ease-in-out;
 }
 input.locationButton {
-  width: 225px;
+  width: 200px;
   background-color: rgb(4, 211, 4);
   border: 2px solid rgb(4 116 4);
   transition: all 10ms ease-in-out;
@@ -69,11 +93,6 @@ div div.right-aligned {
   text-align: right;
 }
 
-.unitLinks {
-  padding-left: 0px;
-  font-size: 14px;
-  line-height: 1.2;
-}
 .unitLinks a {
   text-decoration: none;
 }

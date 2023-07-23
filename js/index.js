@@ -27,11 +27,13 @@ dayTime.innerHTML = `${currentDayTime}`;
 
 //function to get temp for searched city
 function getTemp(response) {
+  console.log(response);
   let searchedCity = response.data.name;
   let currentTemp = Math.round(response.data.main.temp);
   let weatherDescr = response.data.weather[0].description;
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
+  let iconCode = response.data.weather[0].icon;
 
   let city = document.querySelector("#searched-city");
   city.innerHTML = searchedCity;
@@ -43,7 +45,22 @@ function getTemp(response) {
   humid.innerHTML = `Humidity: ${humidity}%`;
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = `Wind: ${wind}mph`;
+  let iconElement = document.querySelector("#weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+  ); //sets src HTML element attribute
+  iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
 }
+//Default is to show weather info for Hollywood, CA
+function defaultCity(event) {
+  //Make API call to WeatherAPI
+  let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=hollywood&appid=${apiKey}&units=imperial`;
+
+  axios.get(apiUrl).then(getTemp);
+}
+defaultCity();
 
 //Search city function
 function searchCity(event) {
