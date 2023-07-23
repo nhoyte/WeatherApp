@@ -25,15 +25,20 @@ let currentDayTime = `${day} ${time}`;
 let dayTime = document.querySelector("#date-time");
 dayTime.innerHTML = `${currentDayTime}`;
 
+//Sets global variable value for fahrenheit temperature
+let fahrenheitTempGlobal = null;
+
 //function to get temp for searched city
 function getTemp(response) {
-  console.log(response);
   let searchedCity = response.data.name;
   let currentTemp = Math.round(response.data.main.temp);
   let weatherDescr = response.data.weather[0].description;
   let humidity = Math.round(response.data.main.humidity);
   let wind = Math.round(response.data.wind.speed);
   let iconCode = response.data.weather[0].icon;
+
+  //Updating global variable
+  fahrenheitTempGlobal = response.data.main.temp;
 
   let city = document.querySelector("#searched-city");
   city.innerHTML = searchedCity;
@@ -51,6 +56,10 @@ function getTemp(response) {
     `https://openweathermap.org/img/wn/${iconCode}@2x.png`
   ); //sets src HTML element attribute
   iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
+
+  //Sets fahrenheit link to active since fahrenheit temperature is displayed by default
+  fahrenLink.classList.add("activeUnitLink");
+  celsiusLink.classList.remove("activeUnitLink");
 }
 
 //Retrieves input when search button is clicked
@@ -71,9 +80,6 @@ function searchCity(city) {
 }
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchSubmit);
-
-//Default is to show weather info for Hollywood, CA
-searchCity("hollywood");
 
 //Function to search weather info by coordinates using Geolocation API
 function getCoordinates(position) {
@@ -97,28 +103,29 @@ currentButton.addEventListener(
 function displayCelsius(event) {
   event.preventDefault();
   //Add active unit class to celsius link to show that link is selected
-  let fLink = document.querySelector("#fahrenheit");
-  fLink.classList.remove("activeUnitLink");
-  let cLink = document.querySelector("#celsius");
-  cLink.classList.add("activeUnitLink");
+  fahrenLink.classList.remove("activeUnitLink");
+  celsiusLink.classList.add("activeUnitLink");
 
-  let cTemp = document.querySelector("#temp");
-  cTemp.innerHTML = 29;
+  let cTempElement = document.querySelector("#temp");
+  let cTemp = (fahrenheitTempGlobal - 32) * (5 / 9);
+  cTempElement.innerHTML = Math.round(cTemp);
 }
 
 function displayFahrenheit(event) {
   event.preventDefault();
   //Add active unit class to fahrenheit link to show that link is selected
-  let fLink = document.querySelector("#fahrenheit");
-  fLink.classList.add("activeUnitLink");
-  let cLink = document.querySelector("#celsius");
-  cLink.classList.remove("activeUnitLink");
+  fahrenLink.classList.add("activeUnitLink");
+  celsiusLink.classList.remove("activeUnitLink");
 
   let fTemp = document.querySelector("#temp");
-  fTemp.innerHTML = 84;
+  fTemp.innerHTML = Math.round(fahrenheitTempGlobal);
 }
+
 //Adding event listeners to unit links
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsius);
 let fahrenLink = document.querySelector("#fahrenheit");
 fahrenLink.addEventListener("click", displayFahrenheit);
+
+//Default is to show weather info for Hollywood, CA
+searchCity("hollywood");

@@ -93,9 +93,6 @@ div div.right-aligned {
   text-align: right;
 }
 
-.unitLinks a {
-  text-decoration: none;
-}
 div.footer {
   font-size: medium;
   bottom: 0;
@@ -121,15 +118,19 @@ input.inputBox:hover {
   background: rgb(0, 172, 0);
   border: 2px solid rgb(60, 245, 9);
 }
-.unitLinks a:hover {
-  color: magenta;
-}
 div.cities a:hover {
   color: rgb(147, 72, 245);
   font-weight: 600;
 }
+.unitLinks a:hover {
+  color: magenta;
+}
 a.activeUnitLink {
   font-weight: 600;
-  color: rgb(13, 69, 255);
-  text-decoration: underline;
+  color: black;
+  text-decoration: none;
+  cursor: default;
+}
+a.activeUnitLink:hover {
+  color: black;
 }
