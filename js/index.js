@@ -78,8 +78,6 @@ function searchCity(city) {
 
   axios.get(apiUrl).then(getTemp);
 }
-let searchButton = document.querySelector("#search-button");
-searchButton.addEventListener("click", searchSubmit);
 
 //Function to search weather info by coordinates using Geolocation API
 function getCoordinates(position) {
@@ -92,12 +90,9 @@ function getCoordinates(position) {
   axios.get(apiUrl).then(getTemp);
 }
 
-//Adding event listener to 'current location' button
-let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener(
-  "click",
-  navigator.geolocation.getCurrentPosition(getCoordinates)
-);
+function getPosition() {
+  navigator.geolocation.getCurrentPosition(getCoordinates);
+}
 
 //C|F Selection
 function displayCelsius(event) {
@@ -121,11 +116,37 @@ function displayFahrenheit(event) {
   fTemp.innerHTML = Math.round(fahrenheitTempGlobal);
 }
 
+//Adding event listener to search button
+let searchButton = document.querySelector("#search-button");
+searchButton.addEventListener("click", searchSubmit);
+
+//Adding event listener to 'current location' button
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", getPosition);
+
 //Adding event listeners to unit links
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", displayCelsius);
 let fahrenLink = document.querySelector("#fahrenheit");
 fahrenLink.addEventListener("click", displayFahrenheit);
+
+//Adding event listeners to city links
+let concord = document.querySelector("#concord-link");
+concord.addEventListener("click", function () {
+  searchCity("concord");
+});
+let matthews = document.querySelector("#matthews-link");
+matthews.addEventListener("click", function () {
+  searchCity("matthews");
+});
+let pineville = document.querySelector("#pineville-link");
+pineville.addEventListener("click", function () {
+  searchCity("pineville");
+});
+let huntersville = document.querySelector("#huntersville-link");
+huntersville.addEventListener("click", function () {
+  searchCity("huntersville");
+});
 
 //Default is to show weather info for Hollywood, CA
 searchCity("hollywood");
