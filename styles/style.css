@@ -18,7 +18,13 @@ h1 {
   padding: 5px;
 }
 div.container {
-  background-color: #e3e5f7;
+  background: linear-gradient(
+    182deg,
+    rgb(200 177 255) 11.2%,
+    rgb(251 189 230) 44.5%,
+    rgb(255 235 206) 84.7%
+  );
+  /* background-color: #e3e5f7; */
   position: relative;
   top: 10px;
   max-width: 680px;
@@ -27,11 +33,13 @@ div.container {
   padding: 15px;
 }
 div.cities a {
-  color: rgb(65 104 255);
+  color: rgb(7 138 255);
+  font-weight: 450;
   font-size: 25px;
   text-align: center;
 }
 div.cityRow {
+  font-weight: 450;
   padding-bottom: 5px;
 }
 div.iconColumn {
@@ -65,7 +73,8 @@ div.weatherInfo {
 }
 div.small {
   font-size: 15px;
-  color: grey;
+  font-weight: 450;
+  color: rgb(150, 150, 150);
   line-height: 1.2;
 }
 form {
@@ -119,7 +128,7 @@ input.inputBox:hover {
   border: 2px solid rgb(60, 245, 9);
 }
 div.cities a:hover {
-  color: rgb(147, 72, 245);
+  color: rgb(131 27 207);
   font-weight: 600;
 }
 .unitLinks a:hover {
