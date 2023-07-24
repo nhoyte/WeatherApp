@@ -105,13 +105,13 @@ input.locationButton {
 div div.right-aligned {
   text-align: right;
 }
-
-div p.footer {
+div.footerRow {
+  padding: 10px 0 3px 0;
+}
+div.footer {
   font-size: medium;
+  padding: 10px 0;
   margin: 5px 0;
-  color: magenta;
-  background-color: rgb(248, 245, 221);
-  border: 2px solid black;
   text-align: center;
   font-weight: 500;
 }
