@@ -120,7 +120,7 @@ searchButton.addEventListener("click", searchSubmit);
 
 //Adding event listener to 'current location' button
 let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click", function () {
+currentButton.addEventListener("click", () => {
   navigator.geolocation.getCurrentPosition(getCoordinates);
 });
 
@@ -131,21 +131,22 @@ let fahrenLink = document.querySelector("#fahrenheit");
 fahrenLink.addEventListener("click", displayFahrenheit);
 
 //Adding event listeners to city links
+let charlotte = document.querySelector("#charlotte-link");
+charlotte.addEventListener("click", () => {
+  searchCity("charlotte");
+});
 let concord = document.querySelector("#concord-link");
-concord.addEventListener("click", function () {
+concord.addEventListener("click", () => {
   searchCity("concord");
 });
 let matthews = document.querySelector("#matthews-link");
-matthews.addEventListener("click", function () {
+matthews.addEventListener("click", () => {
   searchCity("matthews");
 });
-let pineville = document.querySelector("#pineville-link");
-pineville.addEventListener("click", function () {
-  searchCity("pineville");
-});
-let huntersville = document.querySelector("#huntersville-link");
-huntersville.addEventListener("click", function () {
-  searchCity("huntersville");
+
+let rockHill = document.querySelector("#rockhill-link");
+rockHill.addEventListener("click", () => {
+  searchCity("rock hill");
 });
 
 //Default is to show weather info for Hollywood, CA
