@@ -92,10 +92,6 @@ function getCoordinates(position) {
   axios.get(apiUrl).then(getTemp);
 }
 
-function getPosition() {
-  navigator.geolocation.getCurrentPosition(getCoordinates);
-}
-
 //C|F Selection
 function displayCelsius(event) {
   event.preventDefault();
@@ -124,7 +120,9 @@ searchButton.addEventListener("click", searchSubmit);
 
 //Adding event listener to 'current location' button
 let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click", getPosition);
+currentButton.addEventListener("click", function () {
+  navigator.geolocation.getCurrentPosition(getCoordinates);
+});
 
 //Adding event listeners to unit links
 let celsiusLink = document.querySelector("#celsius");
