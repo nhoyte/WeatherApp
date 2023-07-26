@@ -77,7 +77,7 @@
       </div>
 
       <!--Current Weather info-->
-      <div class="row">
+      <div class="row weatherInformationRow">
         <div class="col-sm-auto iconColumn">
           <img src="" alt="" class="weatherIcon" id="weather-icon" />
         </div>
@@ -102,16 +102,72 @@
           <!--Weather Description will be injected here (Ex. sunny, cloudy, etc.)-->
         </div>
       </div>
-      <div class="row footerRow">
-        <div class="col-12 position-absolute start-50 translate-middle footer">
-          <a href="https://github.com/nhoyte/WeatherApp" target="_blank"
-            >Open Source Code</a
-          >
-          by Novia Hoyte 👈🏾
+      <div class="row" id="forecast-row">
+        <div class="col">
+          <div class="forecastDay">Sun</div>
+          <div class="forecastIcon">
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º</span> /
+            <span class="forecastMin">76º</span>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="forecastDay">Sun</div>
+          <div class="forecastIcon">
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º </span>/
+            <span class="forecastMin">76º</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="forecastDay">Sun</div>
+          <div class="forecastIcon">
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º</span> /
+            <span class="forecastMin">76º</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="forecastDay">Sun</div>
+          <div class="forecastIcon">
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º</span> /
+            <span class="forecastMin">76º</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="forecastDay">Sun</div>
+          <div class="forecastIcon">
+            <img
+              src="https://openweathermap.org/img/wn/11d@2x.png"
+              alt="icon"
+            />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º</span> /
+            <span class="forecastMin">76º</span>
+          </div>
         </div>
       </div>
+      <!--Ends Row-->
     </div>
-    <!--Links to source code on GitHub-->
+    <!--Footer with links to source code on GitHub-->
+    <div class="position-absolute start-50 translate-middle footer">
+      <a href="https://github.com/nhoyte/WeatherApp" target="_blank"
+        >Open Source Code</a
+      >
+      by Novia Hoyte 👈🏾
+    </div>
+
     <script src="js/index.js"></script>
   </body>
 </html>

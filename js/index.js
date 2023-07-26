@@ -64,6 +64,16 @@ function getTemp(response) {
   celsiusLink.classList.remove("activeUnitLink");
 }
 
+function getForecast() {
+  let forecastRow = document.querySelector("#forecast-row");
+
+  let forecastSection = `<div class="row">`;
+
+  let testDays = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
+
+  testDays.forEach(day)[(forecastSection += ``)];
+}
+
 //Retrieves input when search button is clicked
 function searchSubmit(event) {
   //Recieves city input
