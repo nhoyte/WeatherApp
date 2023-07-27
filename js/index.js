@@ -62,16 +62,34 @@ function getTemp(response) {
   //Sets fahrenheit link to active since fahrenheit temperature is displayed by default
   fahrenLink.classList.add("activeUnitLink");
   celsiusLink.classList.remove("activeUnitLink");
+
+  getForecast();
 }
 
 function getForecast() {
   let forecastRow = document.querySelector("#forecast-row");
 
-  let forecastSection = `<div class="row">`;
+  let forecastSection = ``;
 
   let testDays = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
+  console.log(testDays);
+  testDays.forEach(function (day) {
+    forecastSection += `
+    <div class="col">
+          <div class="forecastDay">${day}</div>
+          <div class="forecastIcon">
+            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+          </div>
+          <div class="forecastTemp">
+            <span class="forecastMax">89º</span> /
+            <span class="forecastMin">76º</span>
+          </div>
+    </div>
+    `;
+  });
 
-  testDays.forEach(day)[(forecastSection += ``)];
+  forecastRow.innerHTML = forecastSection;
+  console.log(forecastSection);
 }
 
 //Retrieves input when search button is clicked
