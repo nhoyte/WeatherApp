@@ -62,6 +62,7 @@ div.iconColumn {
   left: -15px;
 }
 img.weatherIcon {
+  filter: contrast(1.75);
   position: relative;
   top: -25px;
 }
@@ -123,6 +124,7 @@ div.forecastDay {
 }
 
 div.forecastIcon img {
+  filter: contrast(1.75);
   width: 90px;
   height: 90px;
   margin: 0 auto;
