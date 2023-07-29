@@ -11,19 +11,21 @@ let days = [
   "Friday",
   "Saturday",
 ];
-let day = days[now.getDay()];
 
-//retrieving local AM/PM 12hr time
-let time = now.toLocaleString("en-US", {
-  hour: "numeric",
-  minute: "numeric",
-  hour12: true,
-});
+function displayCurrentTime() {
+  let day = days[now.getDay()];
+  //retrieving local AM/PM 12hr time
+  let time = now.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
-//Injecting day/time into HTML
-let currentDayTime = `${day} ${time}`;
-let dayTime = document.querySelector("#date-time");
-dayTime.innerHTML = `${currentDayTime}`;
+  //Injecting day/time into HTML
+  let currentDayTime = `${day} ${time}`;
+  let dayTime = document.querySelector("#date-time");
+  dayTime.innerHTML = `${currentDayTime}`;
+}
 
 //Sets global variable value for fahrenheit temperature
 let fahrenheitTempGlobal = null;
@@ -192,5 +194,7 @@ rockHill.addEventListener("click", () => {
   searchCity("rock hill");
 });
 
+//Display current day/time
+displayCurrentTime();
 //Default is to show weather info for Hollywood, CA
 searchCity("hollywood");
