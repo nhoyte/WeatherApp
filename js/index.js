@@ -28,9 +28,14 @@ dayTime.innerHTML = `${currentDayTime}`;
 //Sets global variable value for fahrenheit temperature
 let fahrenheitTempGlobal = null;
 
+function displayDayFormatted(timestamp) {
+  let dateObject = new Date(timestamp * 1000);
+  let day = days[dateObject.getDay()];
+  return day;
+}
+
 //function to get temp for searched city
 function getTemp(response) {
-  console.log(response);
   let searchedCity = response.data.name;
   let currentTemp = Math.round(response.data.main.temp);
   let weatherDescr = response.data.weather[0].description;
@@ -63,33 +68,43 @@ function getTemp(response) {
   fahrenLink.classList.add("activeUnitLink");
   celsiusLink.classList.remove("activeUnitLink");
 
-  getForecast();
+  getForecast(response.data.coord);
+}
+function getForecast(coordinates) {
+  let lat = coordinates.lat;
+  let lon = coordinates.lon;
+  let apiKey = "ab8e7ef210556986d1c9a75d6007b825";
+  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+
+  axios.get(forecastApiUrl).then(displayForecast);
 }
 
-function getForecast() {
+function displayForecast(response) {
   let forecastRow = document.querySelector("#forecast-row");
-
   let forecastSection = ``;
+  let nextDaysForecast = response.data.daily;
 
-  let testDays = ["Mon", "Tues", "Wed", "Thurs", "Fri"];
-  console.log(testDays);
-  testDays.forEach(function (day) {
+  for (let i = 1; i < 6; i++) {
+    let day = displayDayFormatted(nextDaysForecast[i].dt);
+    let iconCode = nextDaysForecast[i].weather[0].icon;
+    let max = Math.round(nextDaysForecast[i].temp.max);
+    let min = Math.round(nextDaysForecast[i].temp.min);
+
     forecastSection += `
     <div class="col">
           <div class="forecastDay">${day}</div>
           <div class="forecastIcon">
-            <img src="https://openweathermap.org/img/wn/11d@2x.png" alt="40" />
+            <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="" />
           </div>
           <div class="forecastTemp">
-            <span class="forecastMax">89º</span> /
-            <span class="forecastMin">76º</span>
+            <span class="forecastMax">${max}º</span> /
+            <span class="forecastMin">${min}º</span>
           </div>
     </div>
     `;
-  });
+  }
 
   forecastRow.innerHTML = forecastSection;
-  console.log(forecastSection);
 }
 
 //Retrieves input when search button is clicked
@@ -111,8 +126,8 @@ function searchCity(city) {
 
 //Function to search weather info by coordinates using Geolocation API
 function getCoordinates(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
+  const lat = position.coords.latitude;
+  const long = position.coords.longitude;
 
   let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
