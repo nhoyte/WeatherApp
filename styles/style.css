@@ -24,18 +24,6 @@ div.container {
     rgb(244 245 227) 32.2%,
     rgb(247 194 255) 93.7%
   );
-
-  /*
-linear-gradient(
-    175deg,
-    rgb(244 245 227) 32.2%,
-    rgb(247 194 255) 93.7%
-  )
-  182deg,
-    rgb(244 245 227) 16.2%,
-    rgb(255 205 238) 26.5%,
-    rgb(186 220 255) 91.7%
-  */
   position: relative;
   top: 10px;
   max-width: 650px;
@@ -59,19 +47,19 @@ div.weatherInformationRow {
 div.iconColumn {
   padding: 0;
   position: relative;
-  left: -15px;
+  left: -10px;
 }
 img.weatherIcon {
   filter: contrast(1.75);
   position: relative;
-  top: -25px;
+  top: -20px;
 }
 div.temperature {
   font-size: 45px;
   line-height: 1;
   padding: 0 3px 0 0;
   position: relative;
-  left: -25px;
+  left: -20px;
 }
 
 div.unitLinks {
@@ -79,12 +67,12 @@ div.unitLinks {
   font-size: 14px;
   line-height: 1.2;
   position: relative;
-  left: -30px;
+  left: -25px;
 }
 div.weatherInfo {
   padding: 0;
   position: relative;
-  left: -20px;
+  left: -15px;
 }
 div.small {
   font-size: 15px;

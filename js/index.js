@@ -38,31 +38,33 @@ function displayDayFormatted(timestamp) {
 
 //function to get temp for searched city
 function getTemp(response) {
-  let searchedCity = response.data.name;
-  let currentTemp = Math.round(response.data.main.temp);
-  let weatherDescr = response.data.weather[0].description;
-  let humidity = Math.round(response.data.main.humidity);
+  let searchedCity = response.data.city;
+  let currentTemp = Math.round(response.data.temperature.current);
+  let weatherDescr = response.data.condition.description;
+  let humidity = Math.round(response.data.temperature.humidity);
   let wind = Math.round(response.data.wind.speed);
-  let iconCode = response.data.weather[0].icon;
-  let country = response.data.sys.country;
+  let iconCode = response.data.condition.icon;
+  let feelsLike = Math.round(response.data.temperature.feels_like);
 
   //Updating global variable
-  fahrenheitTempGlobal = response.data.main.temp;
+  fahrenheitTempGlobal = response.data.temperature.current;
 
   let city = document.querySelector("#searched-city");
-  city.innerHTML = `${searchedCity}, ${country}`;
+  city.innerHTML = `${searchedCity}`;
   let temp = document.querySelector("#temp");
   temp.innerHTML = `${currentTemp}`;
   let description = document.querySelector("#descr");
   description.innerHTML = weatherDescr;
+  let feelsLikeElement = document.querySelector("#feels-like");
+  feelsLikeElement.innerHTML = `Feels Like: ${feelsLike}º`;
   let humid = document.querySelector("#humidity");
   humid.innerHTML = `Humidity: ${humidity}%`;
   let windSpeed = document.querySelector("#wind");
-  windSpeed.innerHTML = `Wind: ${wind}mph`;
+  windSpeed.innerHTML = `Wind: ${wind} mph`;
   let iconElement = document.querySelector("#weather-icon");
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${iconCode}@2x.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png`
   ); //sets src HTML element attribute
   iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
 
@@ -70,13 +72,13 @@ function getTemp(response) {
   fahrenLink.classList.add("activeUnitLink");
   celsiusLink.classList.remove("activeUnitLink");
 
-  getForecast(response.data.coord);
+  getForecast(response.data.coordinates);
 }
 function getForecast(coordinates) {
-  let lat = coordinates.lat;
-  let lon = coordinates.lon;
-  let apiKey = "ab8e7ef210556986d1c9a75d6007b825";
-  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+  let lat = coordinates.latitude;
+  let lon = coordinates.longitude;
+  let apiKey = "b00377005017b9aacft302b5od1aa426";
+  let forecastApiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=imperial`;
 
   axios.get(forecastApiUrl).then(displayForecast);
 }
@@ -85,18 +87,18 @@ function displayForecast(response) {
   let forecastRow = document.querySelector("#forecast-row");
   let forecastSection = ``;
   let nextDaysForecast = response.data.daily;
-
+  console.log(response.data.daily);
   for (let i = 1; i < 6; i++) {
-    let day = displayDayFormatted(nextDaysForecast[i].dt);
-    let iconCode = nextDaysForecast[i].weather[0].icon;
-    let max = Math.round(nextDaysForecast[i].temp.max);
-    let min = Math.round(nextDaysForecast[i].temp.min);
+    let day = displayDayFormatted(nextDaysForecast[i].time);
+    let iconCode = nextDaysForecast[i].condition.icon;
+    let max = Math.round(nextDaysForecast[i].temperature.maximum);
+    let min = Math.round(nextDaysForecast[i].temperature.minimum);
 
     forecastSection += `
     <div class="col">
           <div class="forecastDay">${day}</div>
           <div class="forecastIcon">
-            <img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="" />
+            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png" alt="" />
           </div>
           <div class="forecastTemp">
             <span class="forecastMax">${max}º</span> /
@@ -119,10 +121,9 @@ function searchSubmit(event) {
 
 //Search city function
 function searchCity(city) {
-  //Make API call to WeatherAPI
-  let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-
+  //Make API call to SheCodes API
+  let apiKey = "b00377005017b9aacft302b5od1aa426";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(getTemp);
 }
 
@@ -130,10 +131,8 @@ function searchCity(city) {
 function getCoordinates(position) {
   const lat = position.coords.latitude;
   const long = position.coords.longitude;
-
-  let apiKey = "7c14959beb7bd516c3f8d720b9f63f14";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=imperial`;
-
+  let apiKey = "b00377005017b9aacft302b5od1aa426";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${long}&lat=${lat}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(getTemp);
 }
 
@@ -197,4 +196,4 @@ rockHill.addEventListener("click", () => {
 //Display current day/time
 displayCurrentTime();
 //Default is to show weather info for Hollywood, CA
-searchCity("hollywood");
+searchCity("pineville");
