@@ -38,6 +38,7 @@ function displayDayFormatted(timestamp) {
 
 //function to get temp for searched city
 function getTemp(response) {
+  console.log(response.data);
   let searchedCity = response.data.city;
   let currentTemp = Math.round(response.data.temperature.current);
   let weatherDescr = response.data.condition.description;
@@ -67,11 +68,6 @@ function getTemp(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png`
   ); //sets src HTML element attribute
   iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
-
-  //Sets fahrenheit link to active since fahrenheit temperature is displayed by default
-  fahrenLink.classList.add("activeUnitLink");
-  celsiusLink.classList.remove("activeUnitLink");
-
   getForecast(response.data.coordinates);
 }
 function getForecast(coordinates) {
@@ -87,7 +83,6 @@ function displayForecast(response) {
   let forecastRow = document.querySelector("#forecast-row");
   let forecastSection = ``;
   let nextDaysForecast = response.data.daily;
-  console.log(response.data.daily);
   for (let i = 1; i < 6; i++) {
     let day = displayDayFormatted(nextDaysForecast[i].time);
     let iconCode = nextDaysForecast[i].condition.icon;
@@ -95,8 +90,8 @@ function displayForecast(response) {
     let min = Math.round(nextDaysForecast[i].temperature.minimum);
 
     forecastSection += `
-    <div class="col">
-          <div class="forecastDay">${day}</div>
+    <div class="col border rounded forecastCard">
+      <div class="forecastDay">${day}</div>
           <div class="forecastIcon">
             <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png" alt="" />
           </div>
@@ -136,28 +131,6 @@ function getCoordinates(position) {
   axios.get(apiUrl).then(getTemp);
 }
 
-//C|F Selection
-function displayCelsius(event) {
-  event.preventDefault();
-  //Add active unit class to celsius link to show that link is selected
-  fahrenLink.classList.remove("activeUnitLink");
-  celsiusLink.classList.add("activeUnitLink");
-
-  let cTempElement = document.querySelector("#temp");
-  let cTemp = (fahrenheitTempGlobal - 32) * (5 / 9);
-  cTempElement.innerHTML = Math.round(cTemp);
-}
-
-function displayFahrenheit(event) {
-  event.preventDefault();
-  //Add active unit class to fahrenheit link to show that link is selected
-  fahrenLink.classList.add("activeUnitLink");
-  celsiusLink.classList.remove("activeUnitLink");
-
-  let fTemp = document.querySelector("#temp");
-  fTemp.innerHTML = Math.round(fahrenheitTempGlobal);
-}
-
 //Adding event listener to search button
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchSubmit);
@@ -167,13 +140,6 @@ let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", () => {
   navigator.geolocation.getCurrentPosition(getCoordinates);
 });
-
-//Adding event listeners to unit links
-let celsiusLink = document.querySelector("#celsius");
-celsiusLink.addEventListener("click", displayCelsius);
-let fahrenLink = document.querySelector("#fahrenheit");
-fahrenLink.addEventListener("click", displayFahrenheit);
-
 //Adding event listeners to city links
 let charlotte = document.querySelector("#charlotte-link");
 charlotte.addEventListener("click", () => {
@@ -195,5 +161,5 @@ rockHill.addEventListener("click", () => {
 
 //Display current day/time
 displayCurrentTime();
-//Default is to show weather info for Hollywood, CA
+//Default is to show weather info for Pineville, NC
 searchCity("pineville");
