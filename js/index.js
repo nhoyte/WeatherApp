@@ -12,6 +12,7 @@ let days = [
   "Saturday",
 ];
 
+//Function to display current time
 function displayCurrentTime() {
   let day = days[now.getDay()];
   //retrieving local AM/PM 12hr time
@@ -20,16 +21,13 @@ function displayCurrentTime() {
     minute: "numeric",
     hour12: true,
   });
-
   //Injecting day/time into HTML
   let currentDayTime = `${day} ${time}`;
   let dayTime = document.querySelector("#date-time");
   dayTime.innerHTML = `${currentDayTime}`;
 }
 
-//Sets global variable value for fahrenheit temperature
-let fahrenheitTempGlobal = null;
-
+//Function to display formatted date
 function displayDayFormatted(timestamp) {
   let dateObject = new Date(timestamp * 1000);
   let day = days[dateObject.getDay()];
@@ -38,7 +36,6 @@ function displayDayFormatted(timestamp) {
 
 //function to get temp for searched city
 function getTemp(response) {
-  console.log(response.data);
   let searchedCity = response.data.city;
   let currentTemp = Math.round(response.data.temperature.current);
   let weatherDescr = response.data.condition.description;
@@ -46,9 +43,6 @@ function getTemp(response) {
   let wind = Math.round(response.data.wind.speed);
   let iconCode = response.data.condition.icon;
   let feelsLike = Math.round(response.data.temperature.feels_like);
-
-  //Updating global variable
-  fahrenheitTempGlobal = response.data.temperature.current;
 
   let city = document.querySelector("#searched-city");
   city.innerHTML = `${searchedCity}`;
@@ -70,6 +64,8 @@ function getTemp(response) {
   iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
   getForecast(response.data.coordinates);
 }
+
+//Make API call to retrieve forecast
 function getForecast(coordinates) {
   let lat = coordinates.latitude;
   let lon = coordinates.longitude;
@@ -79,6 +75,7 @@ function getForecast(coordinates) {
   axios.get(forecastApiUrl).then(displayForecast);
 }
 
+//Function to display forecast for next 5 days
 function displayForecast(response) {
   let forecastRow = document.querySelector("#forecast-row");
   let forecastSection = ``;
@@ -122,7 +119,7 @@ function searchCity(city) {
   axios.get(apiUrl).then(getTemp);
 }
 
-//Function to search weather info by coordinates using Geolocation API
+//Function to make API call using Geolocation API
 function getCoordinates(position) {
   const lat = position.coords.latitude;
   const long = position.coords.longitude;
@@ -140,6 +137,7 @@ let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", () => {
   navigator.geolocation.getCurrentPosition(getCoordinates);
 });
+
 //Adding event listeners to city links
 let charlotte = document.querySelector("#charlotte-link");
 charlotte.addEventListener("click", () => {
@@ -153,7 +151,6 @@ let matthews = document.querySelector("#matthews-link");
 matthews.addEventListener("click", () => {
   searchCity("matthews");
 });
-
 let rockHill = document.querySelector("#rockhill-link");
 rockHill.addEventListener("click", () => {
   searchCity("rock hill");
@@ -161,5 +158,6 @@ rockHill.addEventListener("click", () => {
 
 //Display current day/time
 displayCurrentTime();
-//Default is to show weather info for Pineville, NC
-searchCity("pineville");
+
+//Default is to show weather info for Hollywood
+searchCity("hollywood");
