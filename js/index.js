@@ -36,33 +36,41 @@ function displayDayFormatted(timestamp) {
 
 //function to get temp for searched city
 function getTemp(response) {
-  let searchedCity = response.data.city;
-  let currentTemp = Math.round(response.data.temperature.current);
-  let weatherDescr = response.data.condition.description;
-  let humidity = Math.round(response.data.temperature.humidity);
-  let wind = Math.round(response.data.wind.speed);
-  let iconCode = response.data.condition.icon;
-  let feelsLike = Math.round(response.data.temperature.feels_like);
+  if (
+    response.request.response ==
+    '{"message":"City not found","status":"not_found"}'
+  ) {
+    alert("City not found. Please check spelling and try again!");
+    document.getElementById("search-form").reset(); //Clears input entry
+  } else {
+    let searchedCity = response.data.city;
+    let currentTemp = Math.round(response.data.temperature.current);
+    let weatherDescr = response.data.condition.description;
+    let humidity = Math.round(response.data.temperature.humidity);
+    let wind = Math.round(response.data.wind.speed);
+    let iconCode = response.data.condition.icon;
+    let feelsLike = Math.round(response.data.temperature.feels_like);
 
-  let city = document.querySelector("#searched-city");
-  city.innerHTML = `${searchedCity}`;
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = `${currentTemp}`;
-  let description = document.querySelector("#descr");
-  description.innerHTML = weatherDescr;
-  let feelsLikeElement = document.querySelector("#feels-like");
-  feelsLikeElement.innerHTML = `Feels Like: ${feelsLike}º`;
-  let humid = document.querySelector("#humidity");
-  humid.innerHTML = `Humidity: ${humidity}%`;
-  let windSpeed = document.querySelector("#wind");
-  windSpeed.innerHTML = `Wind: ${wind} mph`;
-  let iconElement = document.querySelector("#weather-icon");
-  iconElement.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png`
-  ); //sets src HTML element attribute
-  iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
-  getForecast(response.data.coordinates);
+    let city = document.querySelector("#searched-city");
+    city.innerHTML = `${searchedCity}`;
+    let temp = document.querySelector("#temp");
+    temp.innerHTML = `${currentTemp}`;
+    let description = document.querySelector("#descr");
+    description.innerHTML = weatherDescr;
+    let feelsLikeElement = document.querySelector("#feels-like");
+    feelsLikeElement.innerHTML = `Feels Like: ${feelsLike}º`;
+    let humid = document.querySelector("#humidity");
+    humid.innerHTML = `Humidity: ${humidity}%`;
+    let windSpeed = document.querySelector("#wind");
+    windSpeed.innerHTML = `Wind: ${wind} mph`;
+    let iconElement = document.querySelector("#weather-icon");
+    iconElement.setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png`
+    ); //sets src HTML element attribute
+    iconElement.setAttribute("alt", `${weatherDescr}`); //sets alt HTML element attribute
+    getForecast(response.data.coordinates);
+  }
 }
 
 //Make API call to retrieve forecast
@@ -77,6 +85,7 @@ function getForecast(coordinates) {
 
 //Function to display forecast for next 5 days
 function displayForecast(response) {
+  console.log(response);
   let forecastRow = document.querySelector("#forecast-row");
   let forecastSection = ``;
   let nextDaysForecast = response.data.daily;
@@ -101,6 +110,7 @@ function displayForecast(response) {
   }
 
   forecastRow.innerHTML = forecastSection;
+  document.getElementById("search-form").reset(); //Clears input entry
 }
 
 //Retrieves input when search button is clicked
