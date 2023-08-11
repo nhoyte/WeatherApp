@@ -25,8 +25,8 @@ form {
 div.container {
   background: linear-gradient(
     175deg,
-    rgb(244 245 227) 32.2%,
-    rgb(247 194 255) 93.7%
+    rgb(255 246 202) 36.2%,
+    rgb(242 180 255) 93.7%
   );
   position: relative;
   top: 10px;
@@ -175,7 +175,14 @@ div div.forecastCard {
 
 .flip-card-back {
   font-size: 13px;
-  background-color: transparent;
+  background: linear-gradient(
+    173deg,
+    rgb(253, 253, 201) 34%,
+    rgb(215, 247, 254) 72%,
+    rgb(197, 248, 249) 99%
+  );
+  border: 1px solid #df00df38;
+  border-radius: 7px;
   color: black;
   transform: rotateY(180deg);
   display: flex;
