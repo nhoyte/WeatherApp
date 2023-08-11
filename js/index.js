@@ -40,7 +40,7 @@ function getTemp(response) {
     response.request.response ==
     '{"message":"City not found","status":"not_found"}'
   ) {
-    alert("City not found. Please check spelling and try again!");
+    alert("❌ City not found. Please check spelling and try again!");
     document.getElementById("search-form").reset(); //Clears input entry
   } else {
     let searchedCity = response.data.city;
@@ -94,17 +94,34 @@ function displayForecast(response) {
     let iconCode = nextDaysForecast[i].condition.icon;
     let max = Math.round(nextDaysForecast[i].temperature.maximum);
     let min = Math.round(nextDaysForecast[i].temperature.minimum);
+    let forecast = nextDaysForecast[i].condition.description;
+    let humidity = nextDaysForecast[i].temperature.humidity;
+    let windSpeed = Math.round(nextDaysForecast[i].wind.speed);
 
     forecastSection += `
-    <div class="col border rounded forecastCard">
-      <div class="forecastDay">${day}</div>
-          <div class="forecastIcon">
-            <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png" alt="" />
+    <div class="col forecastCard">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="forecastDay">${day}</div>
+                <div class="forecastIcon">
+                  <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${iconCode}.png" alt="" />
+                </div>
+                <div class="forecastTemp">
+                  <span class="forecastMax">${max}º</span> /
+                  <span class="forecastMin">${min}º</span>
+                </div>
           </div>
-          <div class="forecastTemp">
-            <span class="forecastMax">${max}º</span> /
-            <span class="forecastMin">${min}º</span>
+          <div class="flip-card-back">
+            <p>
+              <span class="cardBackTitle">Forecast:</span><br /><br />
+              <span class="capitalize">${forecast}</span> <br />
+              <strong>Humidity:</strong> ${humidity}% <br />
+              <strong>Wind:</strong> ${windSpeed} mph 
+            </p>
           </div>
+        </div>
+      </div>      
     </div>
     `;
   }
