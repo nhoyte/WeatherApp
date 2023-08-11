@@ -154,6 +154,10 @@ function getCoordinates(position) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${long}&lat=${lat}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(getTemp);
 }
+function getPosition(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(getCoordinates);
+}
 
 //Adding event listener to search button
 let searchButton = document.querySelector("#search-button");
@@ -161,9 +165,7 @@ searchButton.addEventListener("click", searchSubmit);
 
 //Adding event listener to 'current location' button
 let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click", () => {
-  navigator.geolocation.getCurrentPosition(getCoordinates);
-});
+currentButton.addEventListener("click", getPosition);
 
 //Adding event listeners to city links
 let charlotte = document.querySelector("#charlotte-link");
