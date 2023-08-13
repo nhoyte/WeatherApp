@@ -140,6 +140,7 @@ div div.forecastCard {
   border: 1px solid #df00df38;
   border-radius: 7px;
   box-shadow: rgb(196 9 255 / 19%) 4px 3px 0px, rgb(50 0 60 / 23%) 8px 12px 10px;
+  transition: all 150ms ease-in-out;
 }
 
 .flip-card-inner {
@@ -158,6 +159,7 @@ div div.forecastCard {
 }
 .flip-card:hover {
   box-shadow: none;
+  transform: scale(1.2);
 }
 
 .flip-card-front,
