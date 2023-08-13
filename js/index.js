@@ -85,7 +85,6 @@ function getForecast(coordinates) {
 
 //Function to display forecast for next 5 days
 function displayForecast(response) {
-  console.log(response);
   let forecastRow = document.querySelector("#forecast-row");
   let forecastSection = ``;
   let nextDaysForecast = response.data.daily;
